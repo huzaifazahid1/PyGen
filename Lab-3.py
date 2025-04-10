@@ -86,9 +86,84 @@ while True:
     if b > 50:
         break
 
-# 2D list value assign
-i = 4
-j = 3
-mat = [[0]*5 for _ in range(5)]
-mat[i][j] = 99
-print(mat)
+#10
+def gen_arr(m, n):
+    result = []
+    for i in range(m):
+        row = []
+        for j in range(n):
+            row.append(i * j)
+        result.append(row)
+    return result
+
+# Example
+rows = 3
+cols = 4
+print(gen_arr(rows, cols))
+
+#11 
+lines = []
+while True:
+    line = input("Enter a line (blank to stop): ")
+    if not line:
+        break
+    lines.append(line.lower())
+
+for l in lines:
+    print(l)
+
+
+#12
+data = input("Enter binary numbers separated by commas: ")
+binaries = data.split(',')
+
+for b in binaries:
+    decimal = int(b, 2)
+    if decimal % 5 == 0:
+        print(b)
+
+
+#13
+
+text = input("Enter a string: ")
+
+letters = 0
+digits = 0
+
+for ch in text:
+    if ch.isalpha():
+        letters += 1
+    elif ch.isdigit():
+        digits += 1
+
+print("Letters:", letters)
+print("Digits:", digits)
+#14 password validation 
+
+def validate_password(password):
+    has_lower = False
+    has_upper = False
+    has_digit = False
+    has_special = False
+    special_chars = "$#@"
+
+    if len(password) < 6 or len(password) > 16:
+        return False
+
+    for char in password:
+        if char.islower():
+            has_lower = True
+        elif char.isupper():
+            has_upper = True
+        elif char.isdigit():
+            has_digit = True
+        elif char in special_chars:
+            has_special = True
+
+    return has_lower and has_upper and has_digit and has_special
+
+password = input("Enter password: ")
+if validate_password(password):
+    print("Valid password")
+else:
+    print("Invalid password")
